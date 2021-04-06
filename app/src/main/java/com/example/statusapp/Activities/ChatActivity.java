@@ -2,6 +2,7 @@ package com.example.statusapp.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +19,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.bumptech.glide.Glide;
+
+
 import com.example.statusapp.databinding.ActivityChatBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -64,6 +67,8 @@ public class ChatActivity extends AppCompatActivity {
     String senderUid;
     String receiverUid;
 
+   /* Context context;
+    public ChatActivity activity;*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +87,39 @@ public class ChatActivity extends AppCompatActivity {
 
         messages = new ArrayList<>();
 
+        final Drawable image = ChatActivity.this.getResources().getDrawable( R.drawable.ic_baseline_mic_24 );
+
+
+        final Drawable image1 = ChatActivity.this.getResources().getDrawable( R.drawable.ic_send );
+
+        binding.messageBox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+               binding.sendBtn.setImageDrawable(image);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(count>0 && count !=0)
+                    binding.sendBtn.setImageDrawable(image1);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
 
         String name = getIntent().getStringExtra("name");
         String profile = getIntent().getStringExtra("image");
@@ -95,6 +133,19 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        binding.name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            Intent intent= new Intent(ChatActivity.this,ProfileActivity.class);
+            intent.putExtra("EXTRA_SESSION_ID", receiverUid);
+            startActivity(intent);
+
+
+
             }
         });
 
@@ -269,6 +320,8 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -378,12 +431,22 @@ public class ChatActivity extends AppCompatActivity {
                 JitsiMeetActivity.launch(ChatActivity.this, options);
 
                 break;
+
             case R.id.call:
+
                 Toast.makeText(this, "Search clicked.", Toast.LENGTH_SHORT).show();
+
                 break;
+
             case R.id.settings:
+
+
+
                 Toast.makeText(this, "Settings Clicked.", Toast.LENGTH_SHORT).show();
+
                 break;
+
+
         }
         return super.onOptionsItemSelected(item);
     }

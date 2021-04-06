@@ -66,4 +66,7 @@ dependencies {
     implementation "androidx.browser:browser:1.2.0"
 
     implementation ('org.jitsi.react:jitsi-meet-sdk:2.+') { transitive = true }
+
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
 }

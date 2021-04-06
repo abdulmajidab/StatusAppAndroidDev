@@ -19,15 +19,15 @@
 
         <LinearLayout
             android:layout_marginLeft="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="4"
             android:orientation="vertical">
 
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:id="@+id/profile_image"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/profilesp"
@@ -36,8 +36,8 @@
 
             <ImageView
                 android:id="@+id/editImageBtn"
-                android:layout_width="30dp"
-                android:layout_height="25dp"
+                android:layout_width="25dp"
+                android:layout_height="20dp"
                 android:layout_below="@id/profile_image"
                 android:layout_marginTop="-18dp"
                 android:layout_marginLeft="50dp"
@@ -54,19 +54,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="5"
+            android:layout_gravity="center_vertical"
             android:orientation="vertical">
 
             <TextView
                 android:layout_marginTop="10dp"
                 android:id="@+id/Mystatus"
                 android:text="@string/my_status"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:id="@+id/time"
-                android:text="@string/timer_description"
+                android:text="@string/tap_to_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

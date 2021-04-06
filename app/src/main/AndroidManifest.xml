@@ -11,10 +11,11 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/statuslogo"
         android:supportsRtl="true"
-
         android:theme="@style/Theme.StatusApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.AddStatusActivity"></activity>
+        <activity android:name=".Activities.ProfileActivity"
+            android:theme="@style/Theme.StatusApp.NoActionbar"/>
+        <activity android:name=".Activities.AddStatusActivity" />
         <activity android:name=".Activities.GroupChatActivity" />
         <activity android:name=".Activities.AddGroupActivity" />
         <activity

@@ -82,29 +82,42 @@
         android:id="@+id/Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"/>
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/statusList"
+        app:layout_constraintTop_toBottomOf="@id/statusList"/>
 
     <EditText
         android:id="@+id/Phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"/>
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/Name"
+        app:layout_constraintTop_toBottomOf="@id/Name"/>
 
     <EditText
         android:id="@+id/ProfileImage"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="@id/Phone"
+        app:layout_constraintTop_toBottomOf="@id/Phone"/>
 
     <EditText
         android:id="@+id/Uid"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="@id/ProfileImage"
+        app:layout_constraintTop_toBottomOf="@id/ProfileImage"/>
+
+
+    <ImageView
+        android:id="@+id/imgPicker"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/Uid"
+        app:layout_constraintTop_toBottomOf="@id/Uid"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

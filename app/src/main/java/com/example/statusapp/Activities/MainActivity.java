@@ -1,7 +1,11 @@
 package com.example.statusapp.Activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -51,8 +55,14 @@ import com.example.statusapp.Models.User;
 import com.example.statusapp.Models.UserStatus;
 import com.example.statusapp.R;
 
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 import com.yarolegovich.lovelydialog.LovelyProgressDialog;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -90,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+        DB = new DBHelper(this);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
@@ -243,28 +253,27 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, ProfileImage);
                 Log.d(TAG, uidUser);
 
+                binding.Name.setText(Name);
+                binding.Phone.setText(Phone);
+                binding.ProfileImage.setText(ProfileImage);
+                binding.Uid.setText(uidUser);
 
 
-
-
-            /*    new Handler().postDelayed(new Runnable() {
+                new Handler().postDelayed(new Runnable() {
 
                     @Override
                     public void run() {
-                        binding.Name.setText(Name);
-                        binding.Phone.setText(Phone);
-                        binding.ProfileImage.setText(ProfileImage);
-                        binding.Uid.setText(uidUser);
-
-
-                        Boolean checkinsertdata = null;
-
                         String nameTXT=  binding.Name.getText().toString();
                         String contactTXT= binding.Phone.getText().toString();
                         String ProfileUrl= binding.ProfileImage.getText().toString();
                         String userkey= binding.Uid.getText().toString();
 
-                        checkinsertdata = DB.insertuserdata(nameTXT, contactTXT, ProfileUrl, userkey);
+
+
+                        Boolean checkinsertdata = null;
+
+
+                        checkinsertdata = DB.insertuserdata(nameTXT, contactTXT, userkey, ProfileUrl);
 
 
                         if(checkinsertdata==true)
@@ -273,10 +282,32 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "New Entry Not Inserted", Toast.LENGTH_SHORT).show();
 
 
+
+
+                        Picasso.with(MainActivity.this)
+                                .load(ProfileImage)
+                                .placeholder(R.mipmap.ic_launcher)
+                                .resize(400, 400)
+                                .centerCrop()
+                                .rotate(0)
+                                .into(binding.imgPicker, new Callback() {
+                                    @Override
+                                    public void onSuccess() {
+                                        //      Toast.makeText(getApplicationContext(), "Fetched image from internet", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                    @Override
+                                    public void onError() {
+                                        //       Toast.makeText(getApplicationContext(), "An error occurred", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+
+
+
                     }
                 }, 3000);
 
-*/
 
 
             }
@@ -287,15 +318,15 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         uidRef.addListenerForSingleValueEvent(valueEventListener);
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
 
     }
 
@@ -368,12 +399,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+
             case R.id.group:
                 startActivity(new Intent(com.example.statusapp.Activities.MainActivity.this, com.example.statusapp.Activities.GroupChatActivity.class));
                 break;
+
             case R.id.search:
                 Toast.makeText(this, "Search clicked.", Toast.LENGTH_SHORT).show();
                 break;
+
             case R.id.newgroup:
                 startActivity(new Intent(com.example.statusapp.Activities.MainActivity.this, com.example.statusapp.Activities.AddGroupActivity.class));
                 break;
@@ -426,8 +460,44 @@ public class MainActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference().child("user/" + user.getUid()).setValue(newUser);
     }*/
 
+    private String saveToInternalStorage(Bitmap bitmapImage){
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+        // path to /data/data/yourapp/app_data/imageDir
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+        // Create imageDir
+        File mypath=new File(directory,"profile.jpg");
 
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return directory.getAbsolutePath();
+    }
+    private void loadImageFromStorage(String path)
+    {
 
+        try {
+            File f=new File(path, "profile.jpg");
+            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+            ImageView img=(ImageView)findViewById(R.id.imgPicker);
+            img.setImageBitmap(b);
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
 

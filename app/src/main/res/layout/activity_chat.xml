@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
+    android:id="@+id/chatcontainer"
     tools:context=".Activities.ChatActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -124,6 +125,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="visible"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -142,7 +144,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/cardView"
-        app:srcCompat="@drawable/ic_send"
+        app:srcCompat="@drawable/ic_baseline_mic_24"
         app:tint="@color/white" />
 
     <LinearLayout
@@ -168,5 +170,6 @@
 
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
