@@ -119,6 +119,8 @@ public class AddStatusActivity extends AppCompatActivity {
                         ArrayList<Status> statuses = new ArrayList<>();
 
                         for(DataSnapshot statusSnapshot : storySnapshot.child("statuses").getChildren()) {
+
+
                             Status sampleStatus = statusSnapshot.getValue(Status.class);
                             statuses.add(sampleStatus);
                         }

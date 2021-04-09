@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -13,8 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StatusApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.ProfileActivity"
-            android:theme="@style/Theme.StatusApp.NoActionbar"/>
+        <activity android:name=".Contacts.SMSInviteActivity"></activity>
+        <activity android:name=".Contacts.InviteContactActivity" />
+        <activity
+            android:name=".Activities.PhoneNumberActivity"
+            android:windowSoftInputMode="stateVisible" />
+        <activity
+            android:name=".Activities.ProfileActivity"
+            android:theme="@style/Theme.StatusApp.NoActionbar" />
         <activity android:name=".Activities.AddStatusActivity" />
         <activity android:name=".Activities.GroupChatActivity" />
         <activity android:name=".Activities.AddGroupActivity" />
@@ -26,7 +35,7 @@
             android:name=".Activities.OTPActivity"
             android:windowSoftInputMode="stateVisible" />
         <activity
-            android:name=".Activities.PhoneNumberActivity"
+            android:name=".Activities.SplashScreen"
             android:windowSoftInputMode="stateVisible">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

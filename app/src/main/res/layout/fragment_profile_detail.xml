@@ -1,15 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.ProfileDetailFragment">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Activities.ProfileActivity"
+    tools:showIn="@layout/activity_profile">
 
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+
+        <TextView
+            android:id="@+id/textStatus"
+            android:text="@string/hey_iam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:textSize="15dp" />
+
+
+        <TextView
+            android:id="@+id/textphone"
+            android:layout_marginTop="25dp"
+            android:layout_below="@id/textStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/hello_blank_fragment"
+            android:textSize="15dp" />
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

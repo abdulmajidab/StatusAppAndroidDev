@@ -426,6 +426,13 @@ class ItemFriendHolder extends RecyclerView.ViewHolder {
         avata = (CircleImageView) itemView.findViewById(R.id.icon_avata);
         checkBox = (CheckBox) itemView.findViewById(R.id.checkAddPeople);
     }
+
+
+
+
+
+
+
 }
 
 

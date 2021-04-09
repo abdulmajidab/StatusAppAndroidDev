@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.statusapp.Contacts.InviteContactActivity;
 import com.example.statusapp.DBHelper;
 import com.example.statusapp.Fragment.CallsFragment;
 import com.example.statusapp.Fragment.ChatFragment;
@@ -412,6 +413,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(com.example.statusapp.Activities.MainActivity.this, com.example.statusapp.Activities.AddGroupActivity.class));
                 break;
 
+            case R.id.invite:
+
+                startActivity(new Intent(MainActivity.this, InviteContactActivity.class));
+                break;
 
             case R.id.settings:
                 startActivity(new Intent(com.example.statusapp.Activities.MainActivity.this, com.example.statusapp.Activities.AddStatusActivity.class));
